@@ -8,6 +8,47 @@ The pipeline uses only the provided data: no external databases, APIs or geocodi
 pretrained component is an open multilingual sentence-embedding model used for candidate
 generation. It is optional and can be switched off in `src/config.py`.
 
+## The problem
+
+The same business shows up differently in different databases:
+
+| Source | Name | Address |
+|---|---|---|
+| Source 1 | Sharma Traders Pvt. Ltd. | Shop 12, MG Road, Near City Mall, Pune 411001 |
+| Source 2 | SHARMA TRADERS PRIVATE LIMITED | 12 M.G. Rd, Pune - 411001 |
+| Source 3 | Sharma Trdrs | MG Road, Pune |
+
+A person can tell these are one business. A computer comparing strings can't, and checking
+every record against every other record is impossible at this scale (2.2M × 10.3M is about
+22 trillion pairs). This project matches such records automatically. It handles abbreviations,
+typos, legal suffixes, transliterated Indian names, reordered addresses and landmarks. It is
+deliberately conservative: when it isn't sure, it doesn't merge, because a wrong merge is worse
+than a missed one.
+
+## Use cases
+
+Entity resolution (also called record linkage or deduplication) is a core data problem
+wherever records about the same thing come from more than one place:
+
+- **E-commerce and marketplaces:** merge seller, supplier and store listings that come from
+  different onboarding systems, so each business has one profile, one rating and one payout
+  account.
+- **Maps and local search:** remove duplicate places so a business doesn't appear three times
+  with different hours or phone numbers.
+- **Banking and fintech (KYC / AML):** link a merchant or company across applications and
+  partner feeds to spot duplicate accounts, shell companies and fraud rings.
+- **CRM and sales:** clean customer and lead databases after a merger, an acquisition or a
+  data import, so sales teams don't contact the same company twice.
+- **Supply chain and procurement:** build one vendor master list from many ERP systems, to
+  see total spend per supplier and catch duplicate invoices.
+- **Government and public data:** join business registries, tax records and licence databases
+  that were never designed to share a common ID.
+- **Data integration in general:** any pipeline that combines datasets with no shared key.
+
+The methods here (normalisation, blocking, learned similarity, and a decision rule tuned to the
+business cost of errors) carry over to all of these settings, including countries the model
+was never trained on.
+
 ## Results (cross-validated, 2% sample of training regions)
 
 | Metric | Score |
