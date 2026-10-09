@@ -49,7 +49,7 @@ The methods here (normalisation, blocking, learned similarity, and a decision ru
 business cost of errors) carry over to all of these settings, including countries the model
 was never trained on.
 
-## Results (cross-validated, 2% sample of training regions)
+## Results 
 
 | Metric | Score |
 |---|---|
@@ -162,12 +162,7 @@ python src/run_pipeline.py --data-dir /tmp/synth --out-dir /tmp/synth/output
 python tools/score.py /tmp/synth/output/matching_results.tsv /tmp/synth/test_hidden_ground_truth.tsv /tmp/synth/test/test_source1.tsv
 ```
 
-## Next steps
 
-- **India** is the weakest segment (F0.5 0.961, blocking recall 0.967). Error analysis on
-  `artifacts/oof_errors.tsv` (1,204 missed, 558 false merges, 144 never reached candidates)
-  should guide better transliteration and address handling.
-- Make the full-data run memory-safe (chunked features and embedding).
 
 ## Project layout
 
