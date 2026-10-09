@@ -1,0 +1,14 @@
+# Python 3.10 – 3.12. All libraries are permissively licensed (BSD / MIT).
+# After your first successful run, replace this file with your exact environment:
+#   pip freeze > requirements.txt
+numpy==2.1.3
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.5.2
+joblib==1.4.2
+rapidfuzz==3.10.1      # MIT  - fast string similarity (pipeline falls back to pure Python without it, much slower)
+lightgbm==4.5.0        # MIT  - the matching model (falls back to sklearn HistGradientBoosting without it)
+# optional upgrades (pipeline runs without them, but scores better with them):
+anyascii>=0.3.2               # ISC        - Hindi / Gujarati / other scripts -> Latin letters
+faiss-cpu>=1.8.0              # MIT        - fast nearest-neighbour search on embeddings
+sentence-transformers>=3.0.0  # Apache-2.0 - runs the multilingual name-embedding model

@@ -1,0 +1,7 @@
+{
+  "t": 0.475,
+  "r": 0.7,
+  "one_to_one": true,
+  "score": 0.9847324299076128,
+  "model": "LightGBM"
+}

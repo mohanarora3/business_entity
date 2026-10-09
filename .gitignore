@@ -1,0 +1,39 @@
+# ---- Python / environment
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.env
+
+# ---- OS / editor
+.DS_Store
+*.code-workspace
+.vscode/
+.idea/
+
+# ---- Competition data (never commit)
+dataset/
+student_resource/
+data/
+*.tsv
+*.csv
+*.parquet
+
+# ---- Pipeline outputs
+output/
+outputs/
+artifacts/emb_cache/
+artifacts/*.joblib
+*.npy
+*.npz
+*.log
+
+# keep the small result files
+!artifacts/decision.json
+!artifacts/feature_importance.tsv
+
+# ---- Archives / build bundles
+*.zip
